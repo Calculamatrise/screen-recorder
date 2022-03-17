@@ -1,0 +1,21 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+recorder-controls {
+    display: block;
+    padding: 20px;
+}
+
+recorder-controls button {
+    padding: 4px 64px;
+}
+
+video {
+    width: 90vw;
+    height: 50vw;
+}
