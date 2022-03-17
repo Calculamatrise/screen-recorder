@@ -37,7 +37,9 @@ export default class {
 
         this.meta = new MediaRecorder(stream);
         this.meta.onstart = () => {
+            this.data = [];
             this.recording = true;
+            this.video.src = null;
         }
 
         this.meta.ondataavailable = (event) => {
@@ -90,6 +92,15 @@ export default class {
 
     stop() {
         this.meta.stop();
+
+        start: {
+            const start = document.querySelector("#start-recording");
+            if (start === null) {
+                break start;
+            }
+        
+            start.resetClick();
+        }
     }
 
     toBlob() {

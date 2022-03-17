@@ -8,28 +8,33 @@ start: {
         break start;
     }
 
-    start.update = function(text, old, listener) {
+    start.update = function(text, listener) {
         this.innerText = text;
-        this.removeEventListener("click", old);
+        this.old && this.removeEventListener("click", this.old);
         this.addEventListener("click", listener);
+        this.old = listener;
     }
 
     async function record() {
         recorder.start(await Recorder.createStream());
-        this.update("Pause", record, pause);
+        this.update("Pause", pause);
     }
 
     function pause() {
         recorder.pause();
-        this.update("Resume", pause, resume);
+        this.update("Resume", resume);
     }
 
     function resume() {
         recorder.resume();
-        this.update("Pause", resume, pause);
+        this.update("Pause", pause);
     }
 
-    start.addEventListener("click", record);
+    start.resetClick = function() {
+        this.update("Record", record);
+    }
+
+    start.resetClick();
 }
 
 end: {
