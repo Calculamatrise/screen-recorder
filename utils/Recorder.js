@@ -57,7 +57,7 @@ export default class {
             this.video.autoplay = false;
             this.video.controls = true;
             this.video.srcObject = null;
-            this.video.src = URL.createObjectURL(
+            this.video.src = window.URL.createObjectURL(
                 new Blob(this.data, {
                     type: this.data[0].type
                 })
@@ -90,5 +90,11 @@ export default class {
 
     stop() {
         this.meta.stop();
+    }
+
+    toBlob() {
+        return new Blob(this.data, {
+            type: this.data[0].type
+        });
     }
 }

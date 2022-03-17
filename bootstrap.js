@@ -42,3 +42,17 @@ end: {
         recorder.stop();
     });
 }
+
+save: {
+    const save = document.querySelector("#save-recording");
+    if (save === null) {
+        break save;
+    }
+
+    save.addEventListener("click", function() {
+        let link = document.createElement("a");
+        link.href = recorder.video.src;
+        link.download = "screen-recording_" + new Date(new Date().setHours(new Date().getHours() - new Date().getTimezoneOffset() / 60)).toISOString().split(/t/i).join("_").replace(/\..+/, "").replace(/:/g, "-");
+        link.click();
+    });
+}
